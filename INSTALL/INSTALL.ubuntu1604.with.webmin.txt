@@ -239,7 +239,7 @@ sudo -u www-data bash /home/misp/public_html/MISP/app/Console/worker/start.sh
 # you can do this by running the following commands:
 
 sudo chmod -R 750 /home/misp/public_html/MISP/<directory path with an indicated issue>
-sudo chown -R misp:misp /home/misp/public_html/MISP/<directory path with an indicated issue>
+sudo chown -R www-data:www-data /home/misp/public_html/MISP/<directory path with an indicated issue>
 
 # Make sure that the STIX libraries and GnuPG work as intended, if not, refer to INSTALL.txt's paragraphs dealing with these two items
 
