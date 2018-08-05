@@ -1,20 +1,28 @@
 INSTALLATION INSTRUCTIONS
 -------------------------
-# For Ubuntu 16.04-server with Webmin preinstalled
+# For Ubuntu 18.04.1 server
 
 # Assuming you created the subdomanin misp.yourserver.tld to where MISP will be installed
 # and that the user "misp" is in the sudoers group
 # and that you have already configured SSL with Lets Encrypt on the subdomain
 
-
-1/ Minimal Ubuntu install
+1/ Install Webmin/Virtualmin
 -------------------------
-
-# Login as misp
-
-# Make sure your system is up2date:
+# First make sure your system is up2date:
 sudo apt-get update
 sudo apt-get upgrade
+
+# Get the Webmin/Virtualmin installer
+wget http://software.virtualmin.com/gpl/scripts/install.sh
+chmod +x install.sh
+./install.sh
+
+# Get a coffee while the installer does its magic
+# Access your console at the URL provided to configure components and subdomain
+
+# Create the misp user
+
+
 
 
 2/ Install LAMP & dependencies
@@ -28,11 +36,11 @@ sudo apt-get install curl gcc git gnupg-agent make python openssl redis-server s
 # MariaDB will replace MySQL and it will work with the latests versions of Webmin without modifications
 # WARNING: Databases and data may be lost! It is assumed you are installing on a new server with no existing DBs
 
-sudo service mysql stop
-sudo apt-get install mariadb-client mariadb-server
-
-# Secure the MariaDB installation (especially by setting a strong root password)
-sudo mysql_secure_installation
+sudo apt-get install software-properties-common
+sudo apt-key adv --recv-keys --keyserver hkp://keyserver.ubuntu.com:80 0xF1656F24C74CD1D8
+sudo add-apt-repository 'deb [arch=amd64,arm64,ppc64el] http://mariadb.mirrors.ovh.net/MariaDB/repo/10.3/ubuntu bionic main'
+sudo apt update
+sudo apt install mariadb-server
 
 
 # Install PHP and dependencies
